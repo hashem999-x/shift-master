@@ -161,8 +161,8 @@ export function shiftWindowLabel(shift: Pick<Shift, "start_time" | "end_time">):
 export function isShiftActive(shift: Pick<Shift, "start_time" | "end_time">, now = new Date()) {
   const minutes = now.getHours() * 60 + now.getMinutes();
   const toMinutes = (time: string) => {
-    const [h, m] = time.split(":").map(Number);
-    return h * 60 + m;
+    const parts = time.split(":").map(Number);
+    return (parts[0] ?? 0) * 60 + (parts[1] ?? 0);
   };
   const start = toMinutes(shift.start_time);
   const end = toMinutes(shift.end_time);
